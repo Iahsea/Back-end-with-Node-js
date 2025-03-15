@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const path = require("path");
-require('dotenv').config()
+const configViewEngine = require('./config/viewEngine');
+const webRoutes = require('./routes/web');
 
 console.log(">>> check env: ", process.env);
 
@@ -11,25 +13,11 @@ const hostname = process.env.HOST_NAME;
 
 
 //config template engine
-app.set("views", path.join(__dirname, 'views'));
-app.set('view engine', 'ejs')
 
+configViewEngine(app);
 
-//config static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', webRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Hello World! & nodemon')
-})
-
-app.get('/abc', (req, res) => {
-    res.send('Hello ABC!')
-})
-
-app.get('/iahsea', (req, res) => {
-    // res.send('<h1>Iahsea</h1>')
-    res.render('sample.ejs')
-})
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
