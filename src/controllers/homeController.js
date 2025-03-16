@@ -13,7 +13,7 @@ const getIahsea = (req, res) => {
     res.render('sample.ejs')
 }
 
-const postCreateUser = (req, res) => {
+const postCreateUser = async (req, res) => {
 
     let email = req.body.email;
     let name = req.body.myname;
@@ -27,19 +27,41 @@ const postCreateUser = (req, res) => {
     // INSERT INTO Users(email, name, city)
     // VALUES('iahsea@gmail.com', 'Nguyen Hai', 'ha tinh');
 
-    connection.query(
-        `INSERT INTO 
-        Users(email, name, city) 
-        VALUES (?, ?, ?);`,
-        [email, name, city],
-        function (err, results) {
-            res.send(' Created user succeed !')
-        }
+    // connection.query(
+    //     `INSERT INTO 
+    //     Users(email, name, city) 
+    //     VALUES (?, ?, ?);`,
+    //     [email, name, city],
+    //     function (err, results) {
+    //         res.send(' Created user succeed !')
+    //     }
+    // );
+
+    const [results, fields] = await connection.query(
+        `INSERT INTO Users(email, name, city) VALUES (?, ?, ?)`, [email, name, city]
     );
+
+    console.log('>>> check results', results);
+    res.send(' Created user succeed !')
+
+
+    // connection.query(
+    //     'select * from Users u',
+    //     function (err, results, fields) {
+    //         console.log(">>>results= ", results); // results contains rows returned by server
+    //     }
+    // );
+
+    // const [results, fields] = await connection.query('select * from Users u');
+
 
 
 }
 
+const getCreatePage = (req, res) => {
+    return res.render('create.ejs')
+}
+
 module.exports = {
-    getHomepage, getABC, getIahsea, postCreateUser
+    getHomepage, getABC, getIahsea, postCreateUser, getCreatePage
 }
