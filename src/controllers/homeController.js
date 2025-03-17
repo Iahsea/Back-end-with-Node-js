@@ -1,5 +1,5 @@
 const connection = require('../config/database');
-const { getAllUsers, getUserById, updateUserById } = require('../services/CRUDService');
+const { getAllUsers, getUserById, updateUserById, deleteUserById } = require('../services/CRUDService');
 
 
 const getHomepage = async (req, res) => {
@@ -26,7 +26,6 @@ const postCreateUser = async (req, res) => {
     console.log(">>> check", email, name, city);
 
     // let {email, name, city} = req.body;
-
 
     const [results, fields] = await connection.query(
         `INSERT INTO Users(email, name, city) VALUES (?, ?, ?)`, [email, name, city]
@@ -86,7 +85,9 @@ const postDeleteUser = async (req, res) => {
 }
 
 const postHandleRemoveUser = async (req, res) => {
-    res.send('ok deleted')
+    const id = req.body.userId;
+    await deleteUserById(id);
+    res.redirect('/');
 }
 
 module.exports = {
