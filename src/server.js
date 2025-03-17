@@ -3,7 +3,7 @@ const express = require('express');
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database');
-
+const mongoose = require('mongoose');
 
 
 const app = express();
@@ -24,8 +24,16 @@ configViewEngine(app);
 
 app.use('/', webRoutes);
 
-//test connection
-connection();
+
+const kittySchema = new mongoose.Schema({
+    name: String
+});
+
+const Kitten = mongoose.model('Kitten', kittySchema);
+
+const cat = new Kitten({ name: 'Iahsea cat' });
+
+cat.save();
 
 (async () => {
     try {
