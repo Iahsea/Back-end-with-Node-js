@@ -4,7 +4,6 @@ const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database');
 
-console.log(">>> check env: ", process.env);
 
 
 const app = express();
@@ -25,15 +24,8 @@ configViewEngine(app);
 
 app.use('/', webRoutes);
 
-
-
-// A simple SELECT query
-// connection.query(
-//     'select * from Users u',
-//     function (err, results, fields) {
-//         console.log(">>>results= ", results); // results contains rows returned by server
-//     }
-// );
+//test connection
+connection();
 
 
 app.listen(port, hostname, () => {
