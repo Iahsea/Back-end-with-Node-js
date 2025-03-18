@@ -25,8 +25,6 @@ configViewEngine(app);
 
 app.use('/', webRoutes);
 
-const cat = new Kitten({ name: 'Iahsea model' });
-cat.save();
 
 (async () => {
     try {
