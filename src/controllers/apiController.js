@@ -99,8 +99,14 @@ const postUploadMultipleFilesAPI = async (req, res) => {
     }
 }
 
+
+const postCustomerAPI = (req, res) => {
+    return res.send("Customer ok");
+}
+
 module.exports = {
     getUsersAPI, postCreateUserAPI, putUpdateUserAPI, deleteUserAPI,
-    postUploadSingleFileApi, postUploadMultipleFilesAPI
+    postUploadSingleFileApi, postUploadMultipleFilesAPI,
+    postCustomerAPI
 }
 
