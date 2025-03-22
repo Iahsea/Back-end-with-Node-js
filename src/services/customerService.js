@@ -43,9 +43,6 @@ const getAllCustomerService = async (limit, page, name, queryString) => {
             console.log(">>> check filter", filter);
             result = await Customer.find(filter).skip(offset).limit(limit).exec();
 
-            console.log(">>>>> check result >>>>>", result);
-
-
         } else {
             result = await Customer.find({});
         }
