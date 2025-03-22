@@ -52,10 +52,16 @@ app.use('/v1/api/', apiRoutes);
         const db = client.db(dbName);
         const collection = db.collection('customers');
 
-        let a = await collection.findOne({ address: "hcm" });
-
-        console.log(">>> find = ", a);
-
+        collection.insertOne({
+            "name": "Hoi Dan IT",
+            address: {
+                province: 'hn',
+                country: {
+                    name: 'vietnam',
+                    code: 1000
+                }
+            }
+        })
 
         app.listen(port, hostname, () => {
             console.log(`Backend zero app listening on port ${port}`)
