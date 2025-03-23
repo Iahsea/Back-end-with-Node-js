@@ -32,7 +32,7 @@ module.exports = {
         if (data.type === "ADD-TASKS") {
             let myProject = await Project.findById(data.projectId).exec();
             for (let i = 0; i < data.taskArr.length; i++) {
-                myProject.task.push(data.taskArr[i]);
+                myProject.tasks.push(data.taskArr[i]);
             }
 
             let newResult = await myProject.save();
