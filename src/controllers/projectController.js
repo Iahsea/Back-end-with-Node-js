@@ -1,10 +1,19 @@
-const { createProject } = require("../services/projectService");
+const { createProject, getProject } = require("../services/projectService");
 
 module.exports = {
     postCreateProject: async (req, res) => {
         let result = await createProject(req.body);
         console.log(">>> check controller result", result);
 
+        return res.status(200).json(
+            {
+                EC: 0,
+                data: result
+            }
+        )
+    },
+    getAllProject: async (req, res) => {
+        let result = await getProject(req.query);
         return res.status(200).json(
             {
                 EC: 0,
