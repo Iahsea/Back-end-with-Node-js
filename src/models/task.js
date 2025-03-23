@@ -14,7 +14,7 @@ const projectSchema = new mongoose.Schema({
     description: String,
 });
 
-const taskScheam = new mongoose.Schema(
+const taskSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -24,7 +24,7 @@ const taskScheam = new mongoose.Schema(
         status: String,
         startDate: String,
         endDate: String,
-        userInfor: userSchema,
+        usersInfo: userSchema,
         projectInfo: projectSchema
     },
     {
@@ -33,7 +33,7 @@ const taskScheam = new mongoose.Schema(
 )
 
 // Override all methods
-taskScheam.plugin(mongoose_delete, { overrideMethods: 'all' });
-const Task = mongoose.model('Task', taskScheam);
+taskSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
+const Task = mongoose.model('Task', taskSchema);
 
 module.exports = Task;

@@ -25,7 +25,10 @@ module.exports = {
     },
 
     uTask: async (data) => {
+        console.log(">>> check data", data);
         let result = await Task.updateOne({ _id: data.id }, { ...data })
+        console.log(">>> check result", result);
+
         return result;
     },
 
