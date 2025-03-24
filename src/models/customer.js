@@ -27,6 +27,7 @@ const customerSchema = new mongoose.Schema(
     }
 );
 
+// Override all methods
 
 customerSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
 
